@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movie Website</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <!-- <link rel="stylesheet" href="../static/css/styles.css"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar_container">
+      <a href="#home" id="navbar_logo">MOVIES</a>
+        <div class="navbar_toggle" id="mobile-menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      <ul class="navbar_menu">
+        <li class="navbar_item">
+            <a href="#home" class="navbar_links" id="home-page">Home</a>
+        </li>
+        <li class="navbar_item">
+            <a href="#about" class="navbar_links" id="about-page">About</a>
+        </li>
+        <li class="navbar_item">
+            <a href="#services" class="navbar_links" id="services-page">Services</a>
+        </li>
+        <li class="navbar_btn">
+            <a href="#sign-up" class="button" id="signup">Sign Up</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Search Bar -->
+  <div class="search_bar">
+    <div class="search_bar_container">
+      <form action="{{ url_for('main') }}" method="POST">
+        <input type="text" class="form_control" id="movie_name" name="movie_name" placeholder="Type Movie name" aria-label="Text input with dropdown button"><a href="" class="fa fa-search" type="submit" id="submission_button"></a>
+     </form>
+    </div>
+  </div>
+
+  <!-- Trending Section -->
+  <div class="trending" id="trending">
+    <h1>Trending Today</h1>
+    <div class="trending_wrapper">
+      <div class="trending_card">
+        <img src="{{myposter[0]}}" alt="{{myname[0]}}">
+        <h2>{{myname[0]}}</h2>
+      </div>
+      <div class="trending_card">
+        <img src="{{myposter[1]}}" alt="{{myname[1]}}">
+        <h2>{{myname[1]}}</h2>
+      </div>
+      <div class="trending_card">
+        <img src="{{myposter[2]}}" alt="{{myname[2]}}">
+        <h2>{{myname[2]}}</h2>
+      </div>
+      <div class="trending_card">
+        <img src="{{myposter[3]}}" alt="{{myname[3]}}">
+        <h2>{{myname[3]}}</h2>
+      </div>
+      <div class="trending_card">
+        <img src="{{myposter[4]}}" alt="{{myname[4]}}">
+        <h2>{{myname[4]}}</h2>
+      </div>
+      <div class="trending_card">
+        <img src="{{myposter[5]}}" alt="{{myname[5]}}">
+        <h2>{{myname[5]}}</h2>
+      </div>
+      <div class="trending_card">
+        <img src="{{myposter[6]}}" alt="{{myname[6]}}">
+        <h2>{{myname[6]}}</h2>
+      </div>
+      <div class="trending_card">
+        <img src="{{myposter[7]}}" alt="{{myname[7]}}">
+        <h2>{{myname[7]}}</h2>
+      </div>
+      <div class="trending_card">
+        <img src="{{myposter[8]}}" alt="{{myname[8]}}">
+        <h2>{{myname[8]}}</h2>
+      </div>
+      <div class="trending_card">
+        <img src="{{myposter[9]}}" alt="{{myname[9]}}">
+        <h2>{{myname[9]}}</h2>
+      </div>
+    </div>
+  </div>
+  
+</body>
+</html>
+      <!-- <div class="trending">
+        <h4>Trending Today:</h4>
+        {% for n in range(10) %}
+          <td>
+            <p>
+              <img src="{{myposter[n]}}" alt="">
+              {{myname[n]}}
+            </p>
+          </td>
+        {%endfor%}
+      </div>
+    </main>     -->

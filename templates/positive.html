@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recommendations</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/positive.css') }}">
+    <!-- <link rel="stylesheet" href="positive.css"> -->
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="navbar_container">
+        <a href="home" id="navbar_logo">MOVIES</a>
+        <div class="navbar_toggle" id="mobile-menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+        <ul class="navbar_menu">
+          <li class="navbar_item">
+            <a href="#home" class="navbar_links" id="home-page">Home</a>
+          </li>
+          <li class="navbar_item">
+            <a href="#about" class="navbar_links" id="about-page">About</a>
+          </li>
+          <li class="navbar_item">
+            <a href="#services" class="navbar_links" id="services-page"
+              >Services</a
+            >
+          </li>
+          <li class="navbar_btn">
+            <a href="#sign-up" class="button" id="signup">Sign Up</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+<!-- Movie Details -->
+    <div class="movie_details" id="movie-details">
+        <div class="movie_details_container">
+            <div class="movie_img-card">
+                <img class="movie_img" src="{{image1}}" alt="{{ title }}">
+            </div>
+            <div class="movie_details">
+                <h2>{{ title }} {{moviedate}}</h2>
+                <p class="genre">[{{moviedata.original_language}}] | {{moviedata.release_date}} | {{genre[0]}}, {{genre[1]}}, {{genre[2]}}, {{genre[3]}} | {{moviedata.runtime}} mins</p>
+                <p class="tag_line">{{moviedata.tagline}}</p>
+                <h3>Overview</h3>
+                <p class="overview">{{moviedata.overview}}</p>
+                <h3>Production Companies</h3>
+                <p class="companies">
+                  {{companies[0]}},
+                  {{companies[1]}},  
+                  {{companies[2]}}, 
+                  {{companies[3]}}
+                </p>
+            </div>
+        </div>
+    </div>
+
+<!-- Movie Actors -->
+    <div class="movie_actors" id="movie-actors">
+      <h2>Actors</h2>
+      <div class="movie_actor_wrapper">
+        <div class="movie_actor_card">
+          <img src="{{actorurl[0]}}" alt="{{movieactor[0]}}">
+          <p>{{movieactor[0]}}</p>
+        </div>
+        <div class="movie_actor_card">
+          <img src="{{actorurl[1]}}" alt="{{movieactor[1]}}">
+          <p>{{movieactor[1]}}</p>
+        </div>
+        <div class="movie_actor_card">
+          <img src="{{actorurl[2]}}" alt="{{movieactor[2]}}">
+          <p>{{movieactor[2]}}</p>
+        </div>
+        <div class="movie_actor_card">
+          <img src="{{actorurl[3]}}" alt="{{movieactor[3]}}">
+          <p  >{{movieactor[3]}}</p>
+        </div>
+        <div class="movie_actor_card">
+          <img src="{{actorurl[4]}}" alt="{{movieactor[4]}}">
+          <p  >{{movieactor[4]}}</p>
+        </div>
+        <div class="movie_actor_card">
+          <img src="{{actorurl[5]}}" alt="{{movieactor[5]}}">
+          <p  >{{movieactor[5]}}</p>
+        </div>
+        <div class="movie_actor_card">
+          <img src="{{actorurl[6]}}" alt="{{movieactor[6]}}">
+          <p  >{{movieactor[6]}}</p>
+        </div>
+        <div class="movie_actor_card">
+          <img src="{{actorurl[7]}}" alt="{{movieactor[7]}}">
+          <p  >{{movieactor[7]}}</p>
+        </div>
+        <div class="movie_actor_card">
+          <img src="{{actorurl[8]}}" alt="{{movieactor[8]}}">
+          <p  >{{movieactor[8]}}</p>
+        </div>
+        <div class="movie_actor_card">
+          <img src="{{actorurl[9]}}" alt="{{movieactor[9]}}">
+          <p  >{{movieactor[9]}}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Movie Directors -->
+    <div class="movie_actors" id="movie-actors">
+      <h2>Directors</h2>
+      <div class="director_wrapper">
+        <div class="movie_actor_card">
+          <img src="{{directorurl[0]}}" alt="{{director[0]}}">
+          <p  >{{director[0]}}</p>
+        </div>
+        <div class="movie_actor_card">
+          <img src="{{directorurl[1]}}" alt="{{director[1]}}">
+          <p  >{{director[1]}}</p>
+        </div>
+        <div class="movie_actor_card">
+          <img src="{{directorurl[2]}}" alt="{{director[2]}}">
+          <p  >{{director[2]}}</p>
+        </div>
+        <div class="movie_actor_card">
+          <img src="{{directorurl[3]}}" alt="{{director[3]}}">
+          <p  >{{director[3]}}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Movie Writers -->
+    <div class="movie_actors" id="movie-actors">
+      <h2>Writers</h2>
+      <div class="director_wrapper">
+        <div class="movie_actor_card">
+          <img src="{{writerurl[0]}}" class="card-img-top" alt="{{writer[0]}}">
+          <p  >{{writer[0]}}</p>
+        </div>
+        <div class="movie_actor_card">
+          <img src="{{writerurl[1]}}" class="card-img-top" alt="{{writer[1]}}">
+          <p  >{{writer[1]}}</p>
+        </div>
+        <div class="movie_actor_card">
+          <img src="{{writerurl[2]}}" class="card-img-top" alt="{{writer[2]}}">
+          <p  >{{writer[2]}}</p>
+        </div>
+        <div class="movie_actor_card">
+          <img src="{{writerurl[3]}}" class="card-img-top" alt="{{writer[3]}}">
+          <p  >{{writer[3]}}</p>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Recommendations -->
+    <div class="movie_actors" id="movie-actors">
+      <h2>Recommendations</h2>
+      <div class="movie_actor_wrapper">
+        <div class="movie_actor_card">
+          <img src="{{recommendurl[0]}}" class="card-img-top" alt="{{recommendmovie[0]}}">
+          <p>{{recommendmovie[0]}}</p>
+        </div>
+        <div class="movie_actor_card">
+          <img src="{{recommendurl[1]}}" class="card-img-top" alt="{{recommendmovie[1]}}">
+          <p>{{recommendmovie[1]}}</p>
+        </div>
+        <div class="movie_actor_card">
+          <img src="{{recommendurl[2]}}" class="card-img-top" alt="{{recommendmovie[2]}}">
+          <p>{{recommendmovie[2]}}</p>
+        </div>
+        <div class="movie_actor_card">
+          <img src="{{recommendurl[3]}}" class="card-img-top" alt="{{recommendmovie[3]}}">
+          <p>{{recommendmovie[3]}}</p>
+        </div>
+        <div class="movie_actor_card">
+          <img src="{{recommendurl[4]}}" class="card-img-top" alt="{{recommendmovie[4]}}">
+          <p>{{recommendmovie[4]}}</p>
+        </div>
+        <div class="movie_actor_card">
+          <img src="{{recommendurl[5]}}" class="card-img-top" alt="{{recommendmovie[5]}}">
+          <p>{{recommendmovie[5]}}</p>
+        </div>
+        <div class="movie_actor_card">
+          <img src="{{recommendurl[6]}}" class="card-img-top" alt="{{recommendmovie[6]}}">
+          <p>{{recommendmovie[6]}}</p>
+        </div>
+        <div class="movie_actor_card">
+          <img src="{{recommendurl[7]}}" class="card-img-top" alt="{{recommendmovie[7]}}">
+          <p>{{recommendmovie[7]}}</p>
+        </div>
+        <div class="movie_actor_card">
+          <img src="{{recommendurl[8]}}" class="card-img-top" alt="{{recommendmovie[8]}}">
+          <p>{{recommendmovie[8]}}</p>
+        </div>
+        <div class="movie_actor_card">
+          <img src="{{recommendurl[9]}}" class="card-img-top" alt="{{recommendmovie[9]}}">
+          <p>{{recommendmovie[9]}}</p>
+        </div>
+      </div>
+    </div>
+
+
+  </body>
+</html>
