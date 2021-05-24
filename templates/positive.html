@@ -39,14 +39,17 @@
 
 <!-- Movie Details -->
     <div class="movie_details" id="movie-details">
-        <div class="movie_details_container">
+        <div class="movie_details_container" background="{{image2}}">
             <div class="movie_img-card">
                 <img class="movie_img" src="{{image1}}" alt="{{ title }}">
             </div>
+            
             <div class="movie_details">
                 <h2>{{ title }} {{moviedate}}</h2>
                 <p class="genre">[{{moviedata.original_language}}] | {{moviedata.release_date}} | {{genre[0]}}, {{genre[1]}}, {{genre[2]}}, {{genre[3]}} | {{moviedata.runtime}} mins</p>
                 <p class="tag_line">{{moviedata.tagline}}</p>
+                <p class="vote_count">Rating : {{moviedata.vote_average}}/10</p>
+                <br>
                 <h3>Overview</h3>
                 <p class="overview">{{moviedata.overview}}</p>
                 <h3>Production Companies</h3>
@@ -59,6 +62,7 @@
             </div>
         </div>
     </div>
+    <a href="" class="fa fa-youtube-play" type="submit" style="font-size:48px;color:red" ></a>
 
 <!-- Movie Actors -->
     <div class="movie_actors" id="movie-actors">

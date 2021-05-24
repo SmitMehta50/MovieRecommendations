@@ -20,8 +20,6 @@ from nltk.stem.wordnet import WordNetLemmatizer
 
 api_key='ae425b92085fb0baed654d771acaed36'
 
-# In[ ]:
-
 
 def get_url(url,path):
     response = requests.get(url)
@@ -32,9 +30,6 @@ def get_url(url,path):
             return None,python_dictionary_values['results'][0]
         else:
             return profile_path,python_dictionary_values['results'][0]
-
-
-# In[ ]:
 
 
 # def print_image(mylist,mysize,mynames):
@@ -49,9 +44,6 @@ def get_url(url,path):
 #     plt.show()
 
 
-# In[ ]:
-
-
 def get_img_url(url,path):
     profile_path,x=get_url(url,path)
     if profile_path == None:
@@ -62,16 +54,10 @@ def get_img_url(url,path):
     return x
 
 
-# In[ ]:
-
-
 def get_dict(url):
     response = requests.get(url)
     python_dictionary_values = json.loads(response.text)
     return python_dictionary_values
-
-
-# In[ ]:
 
 
 def find_movies_names(python_dictionary_values):
@@ -86,9 +72,6 @@ def find_movies_names(python_dictionary_values):
     return profile_path,profile_name
 
 
-# In[ ]:
-
-
 def search_person(mylist,mynames,search):
     path='profile_path'
     mylst=[]
@@ -96,16 +79,7 @@ def search_person(mylist,mynames,search):
         s=i.replace(' ','%20')
         url = 'https://api.themoviedb.org/3/search/'+search+'?api_key='+api_key+'&language=en-US&query=%27'+s+'%27&page=1&include_adult=false'
         mylst.append(get_img_url(url,path))
-    # for i in range(len(mylst)):
-        # print(mynames[i])
-        # search_person_name = mynames[i]
-        # print(mylst[i])
-        # search_person_lst = mylst[i]
-    #print_image(mylst,mysize,mynames)
     return mynames, mylst
-
-
-# In[ ]:
 
 
 def search_movie(mylist,mynames,search):
@@ -117,14 +91,7 @@ def search_movie(mylist,mynames,search):
         x,y=find_movies_names(get_dict(url))
         mylst.append(x)
         mynames.append(y)
-    # for i in range(len(mylst)):
-        # print(mynames[i])
-        # print(mylst[i])
-    #print_image(mylst,mysize,mynames)
     return mynames, mylst
-
-
-# In[ ]:
 
 
 def get_detail(d,s):
@@ -132,9 +99,6 @@ def get_detail(d,s):
     for i in range(len(d[s])):
         lst.append(d[s][i]['name'])
     return lst
-
-
-# In[ ]:
 
 
 def get_genre(idx):
@@ -145,9 +109,6 @@ def get_genre(idx):
     return lst,python_dictionary_values
 
 
-# In[ ]:
-
-
 def movie_details(movie):
     s=movie.replace(' ','%20')
     url='https://api.themoviedb.org/3/search/'+'movie'+'?api_key='+api_key+'&language=en-US&query=%27'+s+'%27&page=1&include_adult=false'
@@ -156,7 +117,6 @@ def movie_details(movie):
     my_genre,mymovie=get_genre(idx)
     
     title=mymovie['original_title']
-    # print('Movie name : \'{}\' '.format(title))
     
     profile_image=[]
     if mymovie['poster_path'] != None:
@@ -167,41 +127,28 @@ def movie_details(movie):
     if mymovie['backdrop_path'] != None:
         profile_image.append('https://image.tmdb.org/t/p/w185/'+ mymovie['backdrop_path'])
         
-    # print(profile_image[0])
     movie_image1 = profile_image[0]
-    # print(profile_image[1])
+
     movie_image2 = profile_image[1]
-        
-    #print_image(profile_image,mysize=(15,10),mynames=[' ',' '])
-    
+           
     imdb_id = mymovie['imdb_id']
     
-    # print('\nMovie plot :')
-    # print(mymovie['overview'])
     mymovie['overview']
     
-    # print('\nMovie Genre :')
-    # print(my_genre)
     movie_genre = my_genre
     
-    # print('\nOriginal_language : {}'.format(mymovie['original_language']))
     mymovie['original_language']
     
-    # print('\nMovie released date : {}'.format(mymovie['release_date']))
     date=str(mymovie['release_date'][:4])
     mymovie['release_date']
     
-    # print('\nMovie ratings : {}({})'.format(mymovie['vote_average'],mymovie['vote_count']))
     mymovie['vote_average']
     mymovie['vote_count']
     
-    # print('\nproduction_companies : {}'.format(get_detail(mymovie,'production_companies')))
     movie_production_companies = get_detail(mymovie,'production_companies')
     
-    # print('\nMovie length : {} minutes '.format(str(mymovie['runtime'])))
     str(mymovie['runtime'])
 
-    # print('\nMovie tagline: \'{}\' '.format(str(mymovie['tagline'])))
     str(mymovie['tagline'])
     
     url='https://api.themoviedb.org/3/movie/'+str(idx)+'/credits?api_key='+api_key+'&language=en-US'
@@ -212,26 +159,20 @@ def movie_details(movie):
     df['mynames'] = df['original_name'] + ' as ' + df['character']
     df2=pd.DataFrame(python_dictionary_values['crew'])
     
-    # print('\nTop cast :')
     myactors = df[df['known_for_department']=='Acting'].original_name.tolist()
     mynames = df[df['known_for_department']=='Acting'].mynames.tolist()
     movie_cast, cast_url = search_person(myactors[:10],mynames[:10],search='person')
     x=myactors[:12]        
     
-    # print('\nDirectors of the movie :')
     myactors = df2[df2['department']=='Directing'].original_name.tolist()
     movie_directors, directors_url = search_person(myactors[:4],myactors[:4],search='person')
     y=myactors[:4]
         
-    # print('\nWriters of the movie :')
     myactors = df2[df2['department']=='Writing'].original_name.tolist()
     movie_writers, writers_url = search_person(myactors[:4],myactors[:4],search='person')
     z=myactors[:4]
          
     return title, date,imdb_id,x,y,z,idx, mymovie, movie_image1, movie_image2, movie_genre, movie_production_companies, movie_cast, movie_directors, movie_writers, cast_url, directors_url, writers_url
-
-
-# In[ ]:
 
 
 import re
@@ -246,9 +187,6 @@ def remove_special_characters(text):
     return text
 
 
-# In[ ]:
-
-
 stop = stopwords.words('english')
 stoplist=[]
 for i in stop:
@@ -257,9 +195,6 @@ for i in stop:
     else:
         stoplist.append(i)
 stop = stoplist
-
-
-# In[ ]:
 
 
 lem=WordNetLemmatizer()
@@ -279,8 +214,6 @@ def Process(sent):
     return result
 
 
-# In[ ]:
-
 
 def imdb(idx,myactors,mydirectors,mywriters):
     myactors = [x.lower() for x in myactors]
@@ -293,7 +226,6 @@ def imdb(idx,myactors,mydirectors,mywriters):
     
     my_list = list(set(myactors + mydirectors + mywriters))
     my_list=' '.join(my_list)
-    # print(my_list)
     
     url='https://api.themoviedb.org/3/movie/'+str(idx)+'?api_key='+api_key+'&language=en-US'
     response = requests.get(url)
@@ -315,13 +247,8 @@ def imdb(idx,myactors,mydirectors,mywriters):
     val=[[title,genres,des,my_list]]
     col=['original_title','genre','description','full_cast']
     d=pd.DataFrame(data=val,columns=col)
-    
-    # print(d)
-    
     return d
 
-
-# In[ ]:
 
 
 def trending():
@@ -337,16 +264,9 @@ def trending():
         myname.append(s)
         s='https://image.tmdb.org/t/p/w185/'+x['poster_path']
         myposter.append(s)
-# If does not work check here for loop
-    # for i in range(10):
-    #     print(myname[i])
-    #     print(myposter[i])
-
     return myname, myposter
-    #print_image(mylist=myposter[:10],mynames=myname[:10],mysize=(15,8))
 
 
-# In[ ]:
 
 
 def metascore(mylist,df,vect):
@@ -361,9 +281,6 @@ def metascore(mylist,df,vect):
         name.append('sim_score_'+i)
         df['sim_score_'+i] = sim_score
     return name,df
-
-
-# In[ ]:
 
 
 def string_match(name,th=0.9):
@@ -424,14 +341,10 @@ def cast_movie(name):
 def similarity2(movie,mylist=['genre','full_cast'],weight='balanced',pop=5,start_year=2000,end_year=2020,min_rating=5.0,Total_votes=100000):
     df=pd.read_csv(r'myfinaldata4.csv')
     my_movie,mymoviedate,myid,my_actor,my_director,my_writer,idx, mymovie, movie_image1, movie_image2, movie_genre, movie_production_companies, movie_cast, movie_directors, movie_writers, cast_url, directors_url, writers_url = movie_details(movie)
-    # print('\nMovie Trailer :\n')
     trailer_search = my_movie + ' ' + mymoviedate + ' official' + ' trailer'
     videosSearch = VideosSearch(trailer_search, limit = 1)
     result=videosSearch.result()
-    # print(result['result'][0]['link'])
     trailer = result['result'][0]['link']
-    #idx=result['result'][0]['id']
-    #display(YouTubeVideo(id=idx,width=900,height=500))
     vect = df.loc[df['imdb_title_id'] == str(myid)]
     if vect.empty:
         vect = imdb(idx,my_actor,my_director,my_writer)
@@ -441,8 +354,6 @@ def similarity2(movie,mylist=['genre','full_cast'],weight='balanced',pop=5,start
     if df.empty:
         print('Srry movies not in database.Check again parameters entered.No recommendation can be generated')
     else:
-        #print(vect)
-        # print('****************************************************************************************')
         # print('\nRecommended Movies :')
         name,df=metascore(mylist,df,vect)
         if (weight == 'balanced') | (len(mylist)==1):
@@ -456,34 +367,12 @@ def similarity2(movie,mylist=['genre','full_cast'],weight='balanced',pop=5,start
         my_weight=(pop/10.0)
         df['metascore'] = df['metascore1']*my_weight + df['metascore2']*(1.0-my_weight)
         sorted_data = df.sort_values(by=['metascore'],ascending=False)
-        #print(sorted_data.loc[:,['original_title','votes','avg_vote','genre','metascore2','metascore1']].head(12))
         name = sorted_data.iloc[:21,[1]].values.ravel().tolist() 
-        #name.remove(my_movie.lower())
         name= string_match(name,th=0.9)       
         recommend_movie, recommend_url = search_movie(name,name,search='movie')
-        # print(recommend_movie)
-        # print(recommend_url)
         
-    # print('*******************************************************************************************************')
-    # print('Top movies from the director:\n')
-    x,y,z = cast_movie(my_director[0])
-        
-    # print('*******************************************************************************************************')
-    # print('Top movies from the lead actor:\n')
-    x,y,z = cast_movie(my_actor[0])
-        
-    if my_director[0] != my_writer[0]:
-        # print('*******************************************************************************************************')
-        # print('Top movies from the writer:\n')
-        x,y,z = cast_movie(my_writer[0])
-        
-    # print('Trending today:\n')
-    myname, myposter = trending()
-        #return my_movie,movies,movies_names
+    trending()
     return my_movie, mymoviedate, my_actor, trailer, my_director, my_writer, mymovie, movie_image1, movie_image2, movie_genre, movie_production_companies, movie_cast, movie_directors, movie_writers, cast_url, directors_url, writers_url, recommend_movie, recommend_url
-
-
-
 
 
 
@@ -494,7 +383,6 @@ app = Flask(__name__)
 def main():
     if flask.request.method == 'GET':
         myname, myposter = trending()
-        
         return(flask.render_template('index.html', myname=myname, myposter=myposter ))
 
 
@@ -510,11 +398,10 @@ def recommendations():
         mylist = ['genre']
         myweight = [1.0]
         movie_name = m_name
-
         my_movie, mymoviedate, my_actor, trailer, my_director, my_writer, mymovie, movie_image1, movie_image2, movie_genre, movie_production_companies, movie_cast, movie_directors, movie_writers, cast_url, directors_url, writers_url, recommend_movie, recommend_url = similarity2(movie_name,mylist,myweight,popularity,start_date,end_date,rating,no_votes)
         
-
-        return(flask.render_template('positive.html', title = my_movie,
+        return(flask.render_template('positive.html', 
+        title = my_movie,
         moviedate = mymoviedate,
         movieactor = movie_cast,
         actorurl= cast_url,
@@ -530,7 +417,6 @@ def recommendations():
         companies = movie_production_companies,
         recommendmovie = recommend_movie,
         recommendurl = recommend_url ))
-
 
 if __name__ == "__main__":
     app.run(debug = True, port=5000)
