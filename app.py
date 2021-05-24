@@ -32,18 +32,6 @@ def get_url(url,path):
             return profile_path,python_dictionary_values['results'][0]
 
 
-# def print_image(mylist,mysize,mynames):
-#     plt.figure(figsize=mysize)
-#     for i in range(len(mylist)):
-#         url=mylist[i]
-#         image = io.imread(url)
-#         plt.subplot(3,4, i+1)
-#         plt.imshow(image)
-#         plt.title(mynames[i])
-#     plt.tight_layout()
-#     plt.show()
-
-
 def get_img_url(url,path):
     profile_path,x=get_url(url,path)
     if profile_path == None:
@@ -333,9 +321,6 @@ def cast_movie(name):
     search_movie(name,name,search='movie')
     
     return 0,0,0
-
-
-# In[ ]:
 
 
 def similarity2(movie,mylist=['genre','full_cast'],weight='balanced',pop=5,start_year=2000,end_year=2020,min_rating=5.0,Total_votes=100000):
