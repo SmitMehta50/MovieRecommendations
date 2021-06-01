@@ -117,7 +117,7 @@ def movie_details(movie):
         
     movie_image1 = profile_image[0]
 
-    movie_image2 = profile_image[1]
+    # movie_image2 = profile_image[1]
            
     imdb_id = mymovie['imdb_id']
     
@@ -160,7 +160,7 @@ def movie_details(movie):
     movie_writers, writers_url = search_person(myactors[:4],myactors[:4],search='person')
     z=myactors[:4]
          
-    return title, date,imdb_id,x,y,z,idx, mymovie, movie_image1, movie_image2, movie_genre, movie_production_companies, movie_cast, movie_directors, movie_writers, cast_url, directors_url, writers_url
+    return title, date,imdb_id,x,y,z,idx, mymovie, movie_image1, movie_genre, movie_production_companies, movie_cast, movie_directors, movie_writers, cast_url, directors_url, writers_url
 
 
 import re
@@ -235,6 +235,7 @@ def imdb(idx,myactors,mydirectors,mywriters):
     val=[[title,genres,des,my_list]]
     col=['original_title','genre','description','full_cast']
     d=pd.DataFrame(data=val,columns=col)
+    print (d)
     return d
 
 
@@ -325,7 +326,7 @@ def cast_movie(name):
 
 def similarity2(movie,mylist=['genre','full_cast'],weight='balanced',pop=5,start_year=2000,end_year=2020,min_rating=5.0,Total_votes=100000):
     df=pd.read_csv(r'myfinaldata4.csv')
-    my_movie,mymoviedate,myid,my_actor,my_director,my_writer,idx, mymovie, movie_image1, movie_image2, movie_genre, movie_production_companies, movie_cast, movie_directors, movie_writers, cast_url, directors_url, writers_url = movie_details(movie)
+    my_movie,mymoviedate,myid,my_actor,my_director,my_writer,idx, mymovie, movie_image1, movie_genre, movie_production_companies, movie_cast, movie_directors, movie_writers, cast_url, directors_url, writers_url = movie_details(movie)
     trailer_search = my_movie + ' ' + mymoviedate + ' official' + ' trailer'
     videosSearch = VideosSearch(trailer_search, limit = 1)
     result=videosSearch.result()
@@ -357,7 +358,7 @@ def similarity2(movie,mylist=['genre','full_cast'],weight='balanced',pop=5,start
         recommend_movie, recommend_url = search_movie(name,name,search='movie')
         
     trending()
-    return my_movie, mymoviedate, my_actor, trailer, my_director, my_writer, mymovie, movie_image1, movie_image2, movie_genre, movie_production_companies, movie_cast, movie_directors, movie_writers, cast_url, directors_url, writers_url, recommend_movie, recommend_url
+    return my_movie, mymoviedate, my_actor, trailer, my_director, my_writer, mymovie, movie_image1, movie_genre, movie_production_companies, movie_cast, movie_directors, movie_writers, cast_url, directors_url, writers_url, recommend_movie, recommend_url
 
 
 
@@ -371,7 +372,7 @@ def main():
         return(flask.render_template('index.html', myname=myname, myposter=myposter ))
 
 
-@app.route('/recommendations', methods=['POST'])
+@app.route('/recommendations', methods=['GET','POST'])
 def recommendations():            
     if flask.request.method == 'POST':
         m_name = flask.request.form['movie_name']
@@ -383,7 +384,7 @@ def recommendations():
         mylist = ['genre']
         myweight = [1.0]
         movie_name = m_name
-        my_movie, mymoviedate, my_actor, trailer, my_director, my_writer, mymovie, movie_image1, movie_image2, movie_genre, movie_production_companies, movie_cast, movie_directors, movie_writers, cast_url, directors_url, writers_url, recommend_movie, recommend_url = similarity2(movie_name,mylist,myweight,popularity,start_date,end_date,rating,no_votes)
+        my_movie, mymoviedate, my_actor, trailer, my_director, my_writer, mymovie, movie_image1, movie_genre, movie_production_companies, movie_cast, movie_directors, movie_writers, cast_url, directors_url, writers_url, recommend_movie, recommend_url = similarity2(movie_name,mylist,myweight,popularity,start_date,end_date,rating,no_votes)
         
         return(flask.render_template('positive.html', 
         title = my_movie,
@@ -397,7 +398,6 @@ def recommendations():
         writerurl=writers_url,
         moviedata = mymovie,
         image1 = movie_image1,
-        image2 = movie_image2,
         genre = movie_genre,
         companies = movie_production_companies,
         recommendmovie = recommend_movie,
