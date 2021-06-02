@@ -235,7 +235,6 @@ def imdb(idx,myactors,mydirectors,mywriters):
     val=[[title,genres,des,my_list]]
     col=['original_title','genre','description','full_cast']
     d=pd.DataFrame(data=val,columns=col)
-    print (d)
     return d
 
 
@@ -306,19 +305,14 @@ def cast_movie(name):
         x='https://m.media-amazon.com/images/S/sash/N1QWYSqAfSJV62Y.png'
     else:
         profile_image='https://image.tmdb.org/t/p/w185/'+ profile_path
-    # print(profile_image)
-    #print_image([profile_image],mynames=[actor_name],mysize=(15,10))
     
     d=python_dictionary_values['results'][0]['known_for_department']
-    # print('known_for_department :{}\n'.format(d))
     myname=actor_name
     actor_name = actor_name.lower().replace(' ','')
     df=df[df.full_cast.fillna('None').str.contains(actor_name)]
     sorted_data = df.sort_values(by=['metascore1'],ascending=False)
     name = sorted_data.iloc[:,[1]].values.ravel().tolist() 
     name= string_match(name,th=0.9)
-    
-    # print('Top movies by {}'.format(myname))
     search_movie(name,name,search='movie')
     
     return 0,0,0
@@ -338,9 +332,9 @@ def similarity2(movie,mylist=['genre','full_cast'],weight='balanced',pop=5,start
     Total_votes=(Total_votes/2278845.0)
     df=df[((df.year >= start_year) & (df.year <= end_year)) & (df.votes >= Total_votes) & (df.avg_vote >= min_rating)]
     if df.empty:
-        print('Srry movies not in database.Check again parameters entered.No recommendation can be generated')
+        a=0
+        return a
     else:
-        # print('\nRecommended Movies :')
         name,df=metascore(mylist,df,vect)
         if (weight == 'balanced') | (len(mylist)==1):
             weights=[(1.0/len(mylist))]*len(mylist)

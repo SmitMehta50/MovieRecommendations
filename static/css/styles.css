@@ -6,8 +6,18 @@
     scroll-behavior: smooth;
 }
 
+html {
+    overflow: scroll;
+    overflow-x: hidden;
+    background-color: black;
+}
+::-webkit-scrollbar {
+    width: 0;  
+    background: transparent; 
+}
+
 .navbar{
-    background: #131313;
+    background: black;
     height: 80px;
     display: flex;
     justify-content: center;
@@ -120,7 +130,7 @@
     }
 
     .navbar_menu.active{
-        background: #131313;
+        background: black;
         top: 10%;
         opacity: 1;
         transition: all 0.5 ease;
@@ -194,7 +204,7 @@
 
 /* Search Bar */
 .search_bar{
-    background: #000000;
+    background: #080000;
     background: linear-gradient(to right, #161616, #000000);
     padding: 100px 0;
 }
@@ -230,7 +240,7 @@
     top: -120%;
     right: 6%;
     transform: translate(-140%, 10%);
-    color:#131313;
+    color:black;
 }
 
 input{
@@ -240,7 +250,7 @@ input{
 /* Trending Section */
 
 .trending{
-    background: #131313;
+    background: black;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -283,7 +293,7 @@ input{
     flex-direction: column;
     /* justify-content: center; */
     color: #fff;
-    background-image: linear-gradient(to right, #131313 0%, #131313 100%);
+    background-image: linear-gradient(to right, black 0%, black 100%);
     transition: 0.3s ease-in;
     cursor: pointer;
 }

@@ -6,8 +6,18 @@
     scroll-behavior: smooth;
 }
 
+html {
+    overflow: scroll;
+    overflow-x: hidden;
+    background-color: black;
+}
+::-webkit-scrollbar {
+    width: 0;  
+    background: transparent; 
+}
+
 .navbar{
-    background: #131313;
+    background: black;
     height: 80px;
     display: flex;
     justify-content: center;
@@ -120,7 +130,7 @@
     }
 
     .navbar_menu.active{
-        background: #131313;
+        background: black;
         top: 10%;
         opacity: 1;
         transition: all 0.5 ease;
@@ -194,21 +204,15 @@
 
 /* Movie Details */
 .movie_details{
-    background-color: #131313;
+    background-color: black;
     padding: 3rem 0;
 }
 
 .movie_details_container{
-    display: grid;
-    grid-template-columns: 1fr 2.5fr;
-    align-items:left;
-    justify-content: center;
-    margin: 0 auto;
-    height: 90%;
-    z-index: 1;
-    width: 100%;
-    max-width: 1500px;
-    padding: 0 50px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: right;
 }
 
 .movie_details{
@@ -218,17 +222,18 @@
 }
 
 .movie_img-card{
-    margin: 10px;
-    height: 400px;
-    width: 200px;
-    border-radius: 4px;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
+    width: max-content;
+    height: max-content;
+    padding: 3rem;
+    border-radius: 2rem;
 }
 
 .movie_img{
-    height: 350px;
+    height: 375px;
     width: 250px;
     border-radius: 1rem;
 }
@@ -277,13 +282,12 @@
 /* Movie Actors */
 
 .movie_actors{
-    background: #131313;
+    background: black;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 850px;
-    /* padding: 10rem 0; */
+    height: max-content;
 }
 
 .movie_actors h2{
@@ -295,7 +299,8 @@
     background-clip: text;
     -webkit-text-fill-color: transparent;
     -moz-text-fill-color: transparent;
-    margin-bottom: 5rem;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
     font-size: 2.5rem;
 }
 
@@ -320,7 +325,7 @@
     flex-direction: column;
     justify-content: center;
     color: #fff;
-    background-image: linear-gradient(to right, #131313 0%, #131313 100%);
+    background-image: linear-gradient(to right, black 0%, black 100%);
     transition: 0.3s ease-in;
     cursor: pointer;
 }
@@ -334,4 +339,5 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr ;
     grid-template-rows: 1fr;
+    justify-content: space-around;
 }
