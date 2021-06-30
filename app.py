@@ -248,7 +248,7 @@ def trending():
     myposter=[]
     for i in range(len(python_dictionary_values['results'])):
         x=python_dictionary_values['results'][i]
-        s=x['original_title']+' ('+x['release_date'][:4]+')'
+        s=x['original_title']
         myname.append(s)
         s='https://image.tmdb.org/t/p/w185/'+x['poster_path']
         myposter.append(s)
