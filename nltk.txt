@@ -1,3 +1,5 @@
+WordNetLemmatizer
+stopwords
 wordnet
 pros_cons
 reuters
