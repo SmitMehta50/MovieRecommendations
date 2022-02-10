@@ -12,6 +12,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import CountVectorizer
 from flask import Flask, render_template, request
 import flask
+from flask_cors import CORS
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -367,6 +368,7 @@ def similarity2(movie, mylist=['genre', 'full_cast'], weight='balanced', pop=5, 
 
 
 app = Flask(__name__)
+CORS(app)
 
 
 @app.route('/home', methods=['GET', 'POST'])
